@@ -277,47 +277,31 @@ Page
 
                     delegate: ListItem {
                         width: parent.width
-                        height: 100
+                        _backgroundColor: (model.type === "Expense") ? "lightcoral" : "lightgreen"
+
+                        onClicked: {
+                            if (!menuOpen && pageStack.depth === 2) {
+                                pageStack.animatorPush(Qt.resolvedUrl("FirstPage.qml"))
+                            }
+                        }
+
+                        ListView.onRemove: animateRemoval()
+                        enabled: !root.deletingItems
                         opacity: enabled ? 1.0 : 0.0
                         Behavior on opacity { FadeAnimator {}}
-                        enabled: !root.deletingItems
 
-                        // Define context menu
-                        Component {
-                            id: contextMenuComponent
+                        menu: Component {
                             ContextMenu {
-                                id: itemMenu
                                 MenuItem {
                                     text: "Delete"
                                     onClicked: remove()
                                 }
                                 MenuItem {
                                     text: "Second option"
-                                    onClicked: {
-                                        // Handle second option action here
-                                    }
                                 }
                             }
                         }
 
-                        // Define the mouse area for interaction
-                        MouseArea {
-                            id: itemMouseArea
-                            anchors.fill: parent
-                            onClicked: {
-                                if (!menuOpen && pageStack.depth === 2) {
-                                    pageStack.animatorPush(Qt.resolvedUrl("FirstPage.qml"))
-                                }
-                            }
-                            onPressAndHold: {
-                                contextMenuComponent.createObject(itemMouseArea, {
-                                    "parent": itemMouseArea,
-                                    "visible": true
-                                }).open()
-                            }
-                        }
-
-                        // Define the content of each list item
                         Row {
                             anchors.fill: parent
                             spacing: 5
