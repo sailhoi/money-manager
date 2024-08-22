@@ -77,6 +77,14 @@ Page
     Component.onCompleted: {
         DB.initializeDatabase(); // Initialize the database
         loadTransactions(); // Load transactions when the page is loaded
+        // Get the current date when the page is loaded
+        var today = new Date();
+        var day = today.getDate();
+        var month = today.getMonth() + 1; // Months are zero-based
+        var year = today.getFullYear();
+
+        // Format date as DD/MM/YYYY (you can adjust this format as needed)
+        selectedDate = day + "/" + month + "/" + year;
     }
 
     ListModel {
@@ -90,7 +98,7 @@ Page
     SilicaFlickable
     {
         anchors { fill: parent; leftMargin: Theme.paddingSmall; rightMargin: Theme.paddingSmall }
-        contentHeight: column.height
+//        contentHeight: column.height
 
         PullDownMenu {
             id: typeMenu
@@ -195,29 +203,39 @@ Page
             PageHeader {
                 width: parent.width
                 height: 100
+
                 Row {
-                    height: Theme.paddingLarge
+                    height: parent.height
                     width: parent.width
                     id: date_row
+
+                    IconButton {
+                        id: moveBackwardsButton
+                        icon.source: "image://theme/icon-m-left"
+                        anchors.verticalCenter: parent.verticalCenter
+                        anchors.left: parent.left
+//                        visible: !graph.reachedStart
+                    }
+
                     Label {
-                        width: parent.width
-                        text: "DateTime"
-                        anchors { horizontalCenter: parent.horizontalCenter; verticalCenter: parent.verticalCenter }
-                        IconButton {
-                            id: moveBackwardsButton
-                            anchors { left: parent.left; verticalCenter: parent.verticalCenter }
-                            icon.source: "image://theme/icon-m-left"
-                            visible: !graph.reachedStart
-                        }
-                        IconButton {
-                            id: moveForwardsButton
-                            anchors { right: parent.right; verticalCenter: parent.verticalCenter }
-                            icon.source: "image://theme/icon-m-right"
-                            visible: graph.dayOffset > 0
-                        }
+                        width: parent.width - moveBackwardsButton.width - moveForwardsButton.width
+                        text: selectedDate
+                        anchors.horizontalCenter: parent.horizontalCenter
+                        anchors.verticalCenter: parent.verticalCenter
+                        horizontalAlignment: Text.AlignHCenter
+                        verticalAlignment: Text.AlignVCenter
+                    }
+
+                    IconButton {
+                        id: moveForwardsButton
+                        icon.source: "image://theme/icon-m-right"
+                        anchors.verticalCenter: parent.verticalCenter
+                        anchors.right: parent.right
+//                        visible: graph.dayOffset > 0
                     }
                 }
             }
+
 
             PageHeader {
                 width: parent.width
@@ -249,40 +267,80 @@ Page
             Column {
                 id: body_column
                 width: parent.width
-                height: Theme.paddingMedium
+                height: parent.height // Ensure the Column fills the parent's height
 
-                Label {
+                ListView {
+                    id: listElement
                     width: parent.width
-                    height: Theme.paddingLarge
-                    VerticalScrollDecorator {}
+                    height: parent.height // Ensure the ListView fills the remaining space in the Column
+                    model: filteredModel
 
-                    ListView {
-                        id: listElement
-                        model: filteredModel
+                    delegate: ListItem {
                         width: parent.width
-                        delegate: ListItem {
-                            width: parent.width
-                            height: 100
-                            _backgroundColor: (model.type === "Expense") ? "lightcoral" : "lightgreen"
-                            Row {
-                                anchors.fill: parent
-                                spacing: 5
-                                Text {
-                                    text: model.name + ": " + model.amount
-                                    anchors.left: parent.left
-                                    anchors.leftMargin: Theme.paddingLarge
+                        height: 100
+                        opacity: enabled ? 1.0 : 0.0
+                        Behavior on opacity { FadeAnimator {}}
+                        enabled: !root.deletingItems
+
+                        // Define context menu
+                        Component {
+                            id: contextMenuComponent
+                            ContextMenu {
+                                id: itemMenu
+                                MenuItem {
+                                    text: "Delete"
+                                    onClicked: remove()
                                 }
-                                Text {
-                                    text: model.date
-                                    anchors.right: parent.right
-                                    anchors.rightMargin: Theme.paddingLarge
-                                    color: "gray"
+                                MenuItem {
+                                    text: "Second option"
+                                    onClicked: {
+                                        // Handle second option action here
+                                    }
                                 }
                             }
                         }
+
+                        // Define the mouse area for interaction
+                        MouseArea {
+                            id: itemMouseArea
+                            anchors.fill: parent
+                            onClicked: {
+                                if (!menuOpen && pageStack.depth === 2) {
+                                    pageStack.animatorPush(Qt.resolvedUrl("FirstPage.qml"))
+                                }
+                            }
+                            onPressAndHold: {
+                                contextMenuComponent.createObject(itemMouseArea, {
+                                    "parent": itemMouseArea,
+                                    "visible": true
+                                }).open()
+                            }
+                        }
+
+                        // Define the content of each list item
+                        Row {
+                            anchors.fill: parent
+                            spacing: 5
+
+                            Text {
+                                text: model.name + ": " + model.amount
+                                anchors.left: parent.left
+                                anchors.leftMargin: Theme.paddingLarge
+                            }
+
+                            Text {
+                                text: model.date
+                                anchors.right: parent.right
+                                anchors.rightMargin: Theme.paddingLarge
+                                color: "gray"
+                            }
+                        }
                     }
+
+                    VerticalScrollDecorator {} // Place the VerticalScrollDecorator inside the ListView to handle scrolling
                 }
             }
+
         }
     }
 }
