@@ -23,12 +23,6 @@ DISTFILES += qml/MoneyManager.qml \
     qml/database_2024_08_19.js \
     qml/pages/DatePickerPage.qml \
     qml/pages/FirstPage.qml \
-    qml/pages/FirstPage_2020_08_19.qml \
-    qml/pages/FirstPage_2024_08_21.qml \
-    qml/pages/FirstPage_copy.qml \
-    qml/pages/FirstPage_copy_1.qml \
-    qml/pages/Listonly.qml \
-    qml/pages/test.qml \
     qml/server.py \
     rpm/MoneyManager.changes.in \
     rpm/MoneyManager.changes.run.in \

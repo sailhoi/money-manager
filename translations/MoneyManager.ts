@@ -11,14 +11,6 @@
 <context>
     <name>FirstPage</name>
     <message>
-        <source>Setting</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Add</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Transations</source>
         <translation type="unfinished"></translation>
     </message>
@@ -48,6 +40,14 @@
     </message>
     <message>
         <source>Amount</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Setting</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

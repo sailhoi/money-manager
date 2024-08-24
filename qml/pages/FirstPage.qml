@@ -1,6 +1,7 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
 import QtQuick.LocalStorage 2.0
+import Nemo.Time 1.0
 import "../database.js" as DB
 
 
@@ -22,6 +23,17 @@ Page
     }
 
     function loadTransactions() {
+        if (selectedDate === "NULL") {
+            // Get the current date when the page is loaded
+            var today = new Date();
+            var day = today.getDate();
+            var month = today.getMonth() + 1; // Months are zero-based
+            var year = today.getFullYear();
+
+            // Format date as DD/MM/YYYY (you can adjust this format as needed)
+//            selectedDate = day + "/" + month + "/" + year;
+            selectedDate = "2024-08-01";
+        }
         DB.getTransactions(selectedDate, function(rows) {
             moneyModel.clear();
             for (var i = 0; i < rows.length; i++) {
@@ -77,14 +89,6 @@ Page
     Component.onCompleted: {
         DB.initializeDatabase(); // Initialize the database
         loadTransactions(); // Load transactions when the page is loaded
-        // Get the current date when the page is loaded
-        var today = new Date();
-        var day = today.getDate();
-        var month = today.getMonth() + 1; // Months are zero-based
-        var year = today.getFullYear();
-
-        // Format date as DD/MM/YYYY (you can adjust this format as needed)
-        selectedDate = day + "/" + month + "/" + year;
     }
 
     ListModel {
@@ -97,7 +101,8 @@ Page
 
     SilicaFlickable
     {
-        anchors { fill: parent; leftMargin: Theme.paddingSmall; rightMargin: Theme.paddingSmall }
+        anchors.fill: parent
+//        anchors { fill: parent; leftMargin: Theme.paddingSmall; rightMargin: Theme.paddingSmall }
 //        contentHeight: column.height
 
         PullDownMenu {
@@ -122,33 +127,6 @@ Page
 
             PageHeader {
                 title: qsTr("Transations")
-            }
-
-            Row {
-                width: parent.width
-                ComboBox {
-                    id: monthComboBox
-                    width: parent.width / 2
-                    label: "Month"
-
-                    menu: ContextMenu {
-                        MenuItem { text: "an option" }
-                        MenuItem { text: "yet another option" }
-                        MenuItem { text: "yet another option with a long label" }
-                    }
-                }
-
-                ComboBox {
-                    id: yearComboBox
-                    width: parent.width / 2
-                    label: "Year"
-
-                    menu: ContextMenu {
-                        MenuItem { text: "an option" }
-                        MenuItem { text: "yet another option" }
-                        MenuItem { text: "yet another option with a long label" }
-                    }
-                }
             }
 
             ComboBox {
@@ -293,11 +271,15 @@ Page
                         menu: Component {
                             ContextMenu {
                                 MenuItem {
-                                    text: "Delete"
-                                    onClicked: remove()
+                                    text: "Edit"
                                 }
                                 MenuItem {
-                                    text: "Second option"
+                                    text: "Delete"
+                                    onClicked: {
+                                        // Call the delete function with the record's unique identifier
+                                        DB.deleteTransaction(model.date);
+                                        loadTransactions(); // Refresh the ListView
+                                    }
                                 }
                             }
                         }
@@ -320,11 +302,9 @@ Page
                             }
                         }
                     }
-
-                    VerticalScrollDecorator {} // Place the VerticalScrollDecorator inside the ListView to handle scrolling
                 }
             }
-
         }
+        VerticalScrollDecorator {} // Place the VerticalScrollDecorator inside the ListView to handle scrolling
     }
 }
