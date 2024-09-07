@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by QtCreator 4.15.2, 2024-08-23T14:33:07. -->
+<!-- Written by QtCreator 4.15.2, 2024-09-04T11:04:29. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -28,7 +28,13 @@
      <value type="QByteArray" key="CurrentPreferences">QmlJSGlobal</value>
     </valuemap>
    </valuemap>
-   <value type="int" key="EditorConfiguration.CodeStyle.Count">2</value>
+   <valuemap type="QVariantMap" key="EditorConfiguration.CodeStyle.2">
+    <value type="QString" key="language">Nim</value>
+    <valuemap type="QVariantMap" key="value">
+     <value type="QByteArray" key="CurrentPreferences">NimGlobal</value>
+    </valuemap>
+   </valuemap>
+   <value type="int" key="EditorConfiguration.CodeStyle.Count">3</value>
    <value type="QByteArray" key="EditorConfiguration.Codec">UTF-8</value>
    <value type="bool" key="EditorConfiguration.ConstrainTooltips">false</value>
    <value type="int" key="EditorConfiguration.IndentSize">4</value>
@@ -89,9 +95,9 @@
   <variable>ProjectExplorer.Project.Target.0</variable>
   <valuemap type="QVariantMap">
    <value type="QString" key="DeviceType">Mer.Device.Type</value>
-   <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">SailfishOS-4.5.0.18-i486 (in Sailfish SDK Build Engine)</value>
-   <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">SailfishOS-4.5.0.18-i486 (in Sailfish SDK Build Engine)</value>
-   <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">SailfishOS-4.5.0.18-i486.default</value>
+   <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">SailfishOS-4.6.0.13-i486 (in Sailfish SDK Build Engine)</value>
+   <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">SailfishOS-4.6.0.13-i486 (in Sailfish SDK Build Engine)</value>
+   <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">SailfishOS-4.6.0.13-i486.default</value>
    <value type="int" key="ProjectExplorer.Target.ActiveBuildConfiguration">0</value>
    <value type="int" key="ProjectExplorer.Target.ActiveDeployConfiguration">0</value>
    <value type="int" key="ProjectExplorer.Target.ActiveRunConfiguration">0</value>
@@ -102,8 +108,8 @@
     <value type="QString" key="MerBuildConfiguration.SigningUser"></value>
     <value type="QString" key="MerSfdkConfigurationAspect.Options"></value>
     <value type="QString" key="MerSpecFileAspect.Path"></value>
-    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">/Users/ymchan87/hoijyun/build-MoneyManager-SailfishOS_4_5_0_18_i486_in_Sailfish_SDK_Build_Engine-Debug</value>
-    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory.shadowDir">/Users/ymchan87/hoijyun/build-MoneyManager-SailfishOS_4_5_0_18_i486_in_Sailfish_SDK_Build_Engine-Debug</value>
+    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">/Users/ymchan87/hoijyun/build-MoneyManager-SailfishOS_4_6_0_13_i486_in_Sailfish_SDK_Build_Engine-Debug</value>
+    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory.shadowDir">/Users/ymchan87/hoijyun/build-MoneyManager-SailfishOS_4_6_0_13_i486_in_Sailfish_SDK_Build_Engine-Debug</value>
     <valuemap type="QVariantMap" key="ProjectExplorer.BuildConfiguration.BuildStepList.0">
      <valuemap type="QVariantMap" key="ProjectExplorer.BuildStepList.Step.0">
       <value type="bool" key="ProjectExplorer.BuildStep.Enabled">true</value>
@@ -159,8 +165,8 @@
     <value type="QString" key="MerBuildConfiguration.SigningUser"></value>
     <value type="QString" key="MerSfdkConfigurationAspect.Options"></value>
     <value type="QString" key="MerSpecFileAspect.Path"></value>
-    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">/Users/ymchan87/hoijyun/build-MoneyManager-SailfishOS_4_5_0_18_i486_in_Sailfish_SDK_Build_Engine-Release</value>
-    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory.shadowDir">/Users/ymchan87/hoijyun/build-MoneyManager-SailfishOS_4_5_0_18_i486_in_Sailfish_SDK_Build_Engine-Release</value>
+    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">/Users/ymchan87/hoijyun/build-MoneyManager-SailfishOS_4_6_0_13_i486_in_Sailfish_SDK_Build_Engine-Release</value>
+    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory.shadowDir">/Users/ymchan87/hoijyun/build-MoneyManager-SailfishOS_4_6_0_13_i486_in_Sailfish_SDK_Build_Engine-Release</value>
     <valuemap type="QVariantMap" key="ProjectExplorer.BuildConfiguration.BuildStepList.0">
      <valuemap type="QVariantMap" key="ProjectExplorer.BuildStepList.Step.0">
       <value type="bool" key="ProjectExplorer.BuildStep.Enabled">true</value>
@@ -217,8 +223,8 @@
     <value type="QString" key="MerBuildConfiguration.SigningUser"></value>
     <value type="QString" key="MerSfdkConfigurationAspect.Options"></value>
     <value type="QString" key="MerSpecFileAspect.Path"></value>
-    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">/Users/ymchan87/hoijyun/build-MoneyManager-SailfishOS_4_5_0_18_i486_in_Sailfish_SDK_Build_Engine-Profile</value>
-    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory.shadowDir">/Users/ymchan87/hoijyun/build-MoneyManager-SailfishOS_4_5_0_18_i486_in_Sailfish_SDK_Build_Engine-Profile</value>
+    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">/Users/ymchan87/hoijyun/build-MoneyManager-SailfishOS_4_6_0_13_i486_in_Sailfish_SDK_Build_Engine-Profile</value>
+    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory.shadowDir">/Users/ymchan87/hoijyun/build-MoneyManager-SailfishOS_4_6_0_13_i486_in_Sailfish_SDK_Build_Engine-Profile</value>
     <valuemap type="QVariantMap" key="ProjectExplorer.BuildConfiguration.BuildStepList.0">
      <valuemap type="QVariantMap" key="ProjectExplorer.BuildStepList.Step.0">
       <value type="bool" key="ProjectExplorer.BuildStep.Enabled">true</value>
@@ -427,9 +433,9 @@
   <variable>ProjectExplorer.Project.Target.1</variable>
   <valuemap type="QVariantMap">
    <value type="QString" key="DeviceType">Mer.Device.Type</value>
-   <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">SailfishOS-4.5.0.18-aarch64 (in Sailfish SDK Build Engine)</value>
-   <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">SailfishOS-4.5.0.18-aarch64 (in Sailfish SDK Build Engine)</value>
-   <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">SailfishOS-4.5.0.18-aarch64.default</value>
+   <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">SailfishOS-4.6.0.13-aarch64 (in Sailfish SDK Build Engine)</value>
+   <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">SailfishOS-4.6.0.13-aarch64 (in Sailfish SDK Build Engine)</value>
+   <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">SailfishOS-4.6.0.13-aarch64.default</value>
    <value type="int" key="ProjectExplorer.Target.ActiveBuildConfiguration">0</value>
    <value type="int" key="ProjectExplorer.Target.ActiveDeployConfiguration">0</value>
    <value type="int" key="ProjectExplorer.Target.ActiveRunConfiguration">0</value>
@@ -440,8 +446,8 @@
     <value type="QString" key="MerBuildConfiguration.SigningUser"></value>
     <value type="QString" key="MerSfdkConfigurationAspect.Options"></value>
     <value type="QString" key="MerSpecFileAspect.Path"></value>
-    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">/Users/ymchan87/hoijyun/build-MoneyManager-SailfishOS_4_5_0_18_aarch64_in_Sailfish_SDK_Build_Engine-Debug</value>
-    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory.shadowDir">/Users/ymchan87/hoijyun/build-MoneyManager-SailfishOS_4_5_0_18_aarch64_in_Sailfish_SDK_Build_Engine-Debug</value>
+    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">/Users/ymchan87/hoijyun/build-MoneyManager-SailfishOS_4_6_0_13_aarch64_in_Sailfish_SDK_Build_Engine-Debug</value>
+    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory.shadowDir">/Users/ymchan87/hoijyun/build-MoneyManager-SailfishOS_4_6_0_13_aarch64_in_Sailfish_SDK_Build_Engine-Debug</value>
     <valuemap type="QVariantMap" key="ProjectExplorer.BuildConfiguration.BuildStepList.0">
      <valuemap type="QVariantMap" key="ProjectExplorer.BuildStepList.Step.0">
       <value type="bool" key="ProjectExplorer.BuildStep.Enabled">true</value>
@@ -497,8 +503,8 @@
     <value type="QString" key="MerBuildConfiguration.SigningUser"></value>
     <value type="QString" key="MerSfdkConfigurationAspect.Options"></value>
     <value type="QString" key="MerSpecFileAspect.Path"></value>
-    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">/Users/ymchan87/hoijyun/build-MoneyManager-SailfishOS_4_5_0_18_aarch64_in_Sailfish_SDK_Build_Engine-Release</value>
-    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory.shadowDir">/Users/ymchan87/hoijyun/build-MoneyManager-SailfishOS_4_5_0_18_aarch64_in_Sailfish_SDK_Build_Engine-Release</value>
+    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">/Users/ymchan87/hoijyun/build-MoneyManager-SailfishOS_4_6_0_13_aarch64_in_Sailfish_SDK_Build_Engine-Release</value>
+    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory.shadowDir">/Users/ymchan87/hoijyun/build-MoneyManager-SailfishOS_4_6_0_13_aarch64_in_Sailfish_SDK_Build_Engine-Release</value>
     <valuemap type="QVariantMap" key="ProjectExplorer.BuildConfiguration.BuildStepList.0">
      <valuemap type="QVariantMap" key="ProjectExplorer.BuildStepList.Step.0">
       <value type="bool" key="ProjectExplorer.BuildStep.Enabled">true</value>
@@ -555,8 +561,8 @@
     <value type="QString" key="MerBuildConfiguration.SigningUser"></value>
     <value type="QString" key="MerSfdkConfigurationAspect.Options"></value>
     <value type="QString" key="MerSpecFileAspect.Path"></value>
-    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">/Users/ymchan87/hoijyun/build-MoneyManager-SailfishOS_4_5_0_18_aarch64_in_Sailfish_SDK_Build_Engine-Profile</value>
-    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory.shadowDir">/Users/ymchan87/hoijyun/build-MoneyManager-SailfishOS_4_5_0_18_aarch64_in_Sailfish_SDK_Build_Engine-Profile</value>
+    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">/Users/ymchan87/hoijyun/build-MoneyManager-SailfishOS_4_6_0_13_aarch64_in_Sailfish_SDK_Build_Engine-Profile</value>
+    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory.shadowDir">/Users/ymchan87/hoijyun/build-MoneyManager-SailfishOS_4_6_0_13_aarch64_in_Sailfish_SDK_Build_Engine-Profile</value>
     <valuemap type="QVariantMap" key="ProjectExplorer.BuildConfiguration.BuildStepList.0">
      <valuemap type="QVariantMap" key="ProjectExplorer.BuildStepList.Step.0">
       <value type="bool" key="ProjectExplorer.BuildStep.Enabled">true</value>
@@ -765,9 +771,9 @@
   <variable>ProjectExplorer.Project.Target.2</variable>
   <valuemap type="QVariantMap">
    <value type="QString" key="DeviceType">Mer.Device.Type</value>
-   <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">SailfishOS-4.5.0.18-armv7hl (in Sailfish SDK Build Engine)</value>
-   <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">SailfishOS-4.5.0.18-armv7hl (in Sailfish SDK Build Engine)</value>
-   <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">SailfishOS-4.5.0.18-armv7hl.default</value>
+   <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">SailfishOS-4.6.0.13-armv7hl (in Sailfish SDK Build Engine)</value>
+   <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">SailfishOS-4.6.0.13-armv7hl (in Sailfish SDK Build Engine)</value>
+   <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">SailfishOS-4.6.0.13-armv7hl.default</value>
    <value type="int" key="ProjectExplorer.Target.ActiveBuildConfiguration">0</value>
    <value type="int" key="ProjectExplorer.Target.ActiveDeployConfiguration">0</value>
    <value type="int" key="ProjectExplorer.Target.ActiveRunConfiguration">0</value>
@@ -778,8 +784,8 @@
     <value type="QString" key="MerBuildConfiguration.SigningUser"></value>
     <value type="QString" key="MerSfdkConfigurationAspect.Options"></value>
     <value type="QString" key="MerSpecFileAspect.Path"></value>
-    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">/Users/ymchan87/hoijyun/build-MoneyManager-SailfishOS_4_5_0_18_armv7hl_in_Sailfish_SDK_Build_Engine-Debug</value>
-    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory.shadowDir">/Users/ymchan87/hoijyun/build-MoneyManager-SailfishOS_4_5_0_18_armv7hl_in_Sailfish_SDK_Build_Engine-Debug</value>
+    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">/Users/ymchan87/hoijyun/build-MoneyManager-SailfishOS_4_6_0_13_armv7hl_in_Sailfish_SDK_Build_Engine-Debug</value>
+    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory.shadowDir">/Users/ymchan87/hoijyun/build-MoneyManager-SailfishOS_4_6_0_13_armv7hl_in_Sailfish_SDK_Build_Engine-Debug</value>
     <valuemap type="QVariantMap" key="ProjectExplorer.BuildConfiguration.BuildStepList.0">
      <valuemap type="QVariantMap" key="ProjectExplorer.BuildStepList.Step.0">
       <value type="bool" key="ProjectExplorer.BuildStep.Enabled">true</value>
@@ -835,8 +841,8 @@
     <value type="QString" key="MerBuildConfiguration.SigningUser"></value>
     <value type="QString" key="MerSfdkConfigurationAspect.Options"></value>
     <value type="QString" key="MerSpecFileAspect.Path"></value>
-    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">/Users/ymchan87/hoijyun/build-MoneyManager-SailfishOS_4_5_0_18_armv7hl_in_Sailfish_SDK_Build_Engine-Release</value>
-    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory.shadowDir">/Users/ymchan87/hoijyun/build-MoneyManager-SailfishOS_4_5_0_18_armv7hl_in_Sailfish_SDK_Build_Engine-Release</value>
+    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">/Users/ymchan87/hoijyun/build-MoneyManager-SailfishOS_4_6_0_13_armv7hl_in_Sailfish_SDK_Build_Engine-Release</value>
+    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory.shadowDir">/Users/ymchan87/hoijyun/build-MoneyManager-SailfishOS_4_6_0_13_armv7hl_in_Sailfish_SDK_Build_Engine-Release</value>
     <valuemap type="QVariantMap" key="ProjectExplorer.BuildConfiguration.BuildStepList.0">
      <valuemap type="QVariantMap" key="ProjectExplorer.BuildStepList.Step.0">
       <value type="bool" key="ProjectExplorer.BuildStep.Enabled">true</value>
@@ -893,8 +899,8 @@
     <value type="QString" key="MerBuildConfiguration.SigningUser"></value>
     <value type="QString" key="MerSfdkConfigurationAspect.Options"></value>
     <value type="QString" key="MerSpecFileAspect.Path"></value>
-    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">/Users/ymchan87/hoijyun/build-MoneyManager-SailfishOS_4_5_0_18_armv7hl_in_Sailfish_SDK_Build_Engine-Profile</value>
-    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory.shadowDir">/Users/ymchan87/hoijyun/build-MoneyManager-SailfishOS_4_5_0_18_armv7hl_in_Sailfish_SDK_Build_Engine-Profile</value>
+    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">/Users/ymchan87/hoijyun/build-MoneyManager-SailfishOS_4_6_0_13_armv7hl_in_Sailfish_SDK_Build_Engine-Profile</value>
+    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory.shadowDir">/Users/ymchan87/hoijyun/build-MoneyManager-SailfishOS_4_6_0_13_armv7hl_in_Sailfish_SDK_Build_Engine-Profile</value>
     <valuemap type="QVariantMap" key="ProjectExplorer.BuildConfiguration.BuildStepList.0">
      <valuemap type="QVariantMap" key="ProjectExplorer.BuildStepList.Step.0">
       <value type="bool" key="ProjectExplorer.BuildStep.Enabled">true</value>

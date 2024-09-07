@@ -18,12 +18,11 @@ SOURCES += src/MoneyManager.cpp
 
 DISTFILES += qml/MoneyManager.qml \
     qml/cover/CoverPage.qml \
-    qml/database.js \
-    qml/database.py \
     qml/database_2024_08_19.js \
     qml/pages/DatePickerPage.qml \
+    qml/pages/EditTransationPage.qml \
     qml/pages/FirstPage.qml \
-    qml/server.py \
+    qml/pages/FirstPage_2024_08_25.qml \
     rpm/MoneyManager.changes.in \
     rpm/MoneyManager.changes.run.in \
     rpm/MoneyManager.spec \
@@ -41,3 +40,5 @@ CONFIG += sailfishapp_i18n
 # following TRANSLATIONS line. And also do not forget to
 # modify the localized app name in the the .desktop file.
 TRANSLATIONS += translations/MoneyManager-de.ts
+
+HEADERS +=
