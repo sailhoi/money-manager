@@ -6,6 +6,9 @@ import Nemo.Time 1.0
 Page
 {
     id: edittransationpage
+    property QtObject dataContainer: null
+    property string transationTitleText: null
+    property string transationTitle: null
     allowedOrientations: Orientation.All
 
     // -----------------------------------------------------------------------
@@ -24,6 +27,23 @@ Page
 
             PageHeader {
                 title: qsTr("New Transation")
+            }
+
+            ComboBox {
+                id: typeComboBox
+                label: qsTr("Select Type")
+                currentIndex: 1
+                menu: ContextMenu {
+                    MenuItem {
+                        text: qsTr("Income")
+                    }
+                    MenuItem {
+                        text: qsTr("Expense")
+                    }
+                    MenuItem {
+                        text: qsTr("Transfer")
+                    }
+                }
             }
 
             ValueButton {
@@ -55,6 +75,16 @@ Page
 
 //                horizontalAlignment: textAlignment
                 backgroundStyle: textInputPage.editorStyle
+            }
+            TextField {
+                placeholderText: "Note"
+                width: parent.width
+            }
+            TextArea {
+                width: parent.width
+                height: Screen.height / 4
+                label: "Description"
+                placeholderText: label
             }
         }
     }

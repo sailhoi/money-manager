@@ -1,12 +1,13 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
 import QtQuick.LocalStorage 2.0
-import "../Categories_Incomes_db.js" as DBmanager
+import "../../JS/Accounts_db.js" as AccountsManager
 
 Page {
     id: categoriesPage
 
-    property string newCategory
+    property int typeID
+    property string typeName
 
     SilicaListView {
         id: listView
@@ -15,29 +16,29 @@ Page {
             id: pullDownMenu
 
             MenuItem {
-                text: qsTr("Add Category")
+                text: qsTr("Add Account")
                 onClicked: {
-                    var dialog = pageStack.push(Qt.resolvedUrl("IncomeCategoryPage.qml"));
+                    var dialog = pageStack.push(Qt.resolvedUrl("EditAccountPage.qml"));
                     dialog.accepted.connect(function() {
                         if (dialog.name && dialog.name.trim() !== "") {
-                            DBmanager.insertCategory(dialog.name.trim());
+                            AccountsManager.insertAccount(dialog.name.trim());
                             refreshItems();
                         } else {
-                            console.error("Category name cannot be empty");
+                            console.error("Account name cannot be empty");
                         }
                     });
                 }
             }
 
             MenuItem {
-                text: qsTr("Reset Categories")
-                visible: listModel.count > 0
+                text: qsTr("Reset Accounts")
+//                visible: listModel.count > 0
                 onClicked: {
                     var confirmation = Remorse.popupAction(
                         root,
                         qsTr("Are you sure you want to reset all categories?"),
                         function() {
-                            DBmanager.reset();
+                            AccountsManager.resetDatabase();
                             refreshItems();
                         }
                     );
@@ -49,13 +50,13 @@ Page {
         anchors.fill: parent
 
         header: PageHeader {
-            title: qsTr("Income Categories")
+            title: typeName
         }
 
         ViewPlaceholder {
             enabled: listModel.count === 0
-            text: qsTr("No income categories")
-            hintText: qsTr("Pull down to add a new category")
+            text: qsTr("No Account")
+            hintText: qsTr("Pull down to add a new Account")
         }
 
         delegate: ListItem {
@@ -116,9 +117,11 @@ Page {
 
     function refreshItems() {
         listModel.clear();
-        var categories = DBmanager.getAllCategories();
-        for (var i = 0; i < categories.length; i++) {
-            listModel.append({ "name": categories[i] });
+        var accounts = AccountsManager.getAllAccounts(typeID);
+        console.log(JSON.stringify(accounts));
+        console.log("Type id:". typeID)
+        for (var i = 0; i < accounts.length; i++) {
+            listModel.append({ "name": accounts[i] });
         }
     }
 }

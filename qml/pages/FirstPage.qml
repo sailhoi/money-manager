@@ -1,10 +1,27 @@
-import QtQuick 2.2
+import QtQuick 2.6
 import QtQuick.Window 2.0
 import Sailfish.Silica 1.0
 import QtQuick.Layouts 1.1
+import QtQuick.LocalStorage 2.0
+import "../Categories_Incomes_db.js" as Categories_Income
+import "../Categories_Expenses_db.js" as Categories_Expenses
+import "../JS/Accounts_db.js" as AccountsManager
+import "../JS/AccountTypes_db.js" as AccountTypesManager
+
+
+
 
 Page {
     id: root
+    property date selectedDate: new Date()
+
+    Component.onCompleted: {
+        if(Categories_Income.getNumberOftables() === 0)
+            Categories_Income.initializeDatabase();
+            Categories_Expenses.initializeDatabase();
+            AccountsManager.initializeDatabase();
+            AccountTypesManager.initializeDatabase();
+    }
 
     SilicaFlickable {
         anchors.fill: parent
@@ -15,13 +32,23 @@ Page {
             MenuItem {
                 text: qsTr("Setting")
                 onClicked: {
-                    // Handle the "Setting" action here
+                    pageStack.push(Qt.resolvedUrl("SettingPage.qml"))
+                }
+            }
+            MenuItem {
+                text: qsTr("This month")
+                onClicked: {
+                    onClicked: {
+                        // Reset the selected date to the current month and year
+                        selectedDate = new Date()
+                        dateLabel.text = Qt.formatDate(selectedDate, "MMMM yyyy")
+                    }
                 }
             }
             MenuItem {
                 text: qsTr("Add")
                 onClicked: {
-                    pageStack.push(Qt.resolvedUrl("EditTransationPage.qml"))
+                    pageStack.push(Qt.resolvedUrl("EditTransationPage.qml"),{dataContainer: root})
                 }
             }
         }
@@ -40,30 +67,63 @@ Page {
                     height: parent.height
                     id: date_row
 
-                    IconButton {
-                        id: moveBackwardsButton
-                        icon.source: "image://theme/icon-m-left"
-                        anchors.verticalCenter: parent.verticalCenter
-                        anchors.left: parent.left
-                        anchors.leftMargin: Theme.paddingSmall
-                    }
+//                    IconButton {
+//                        id: moveBackwardsButton
+//                        icon.source: "image://theme/icon-m-left"
+//                        anchors.verticalCenter: parent.verticalCenter
+//                        anchors.left: parent.left
+//                        anchors.leftMargin: Theme.paddingSmall
+//                        onClicked: {
+//                            // Decrease the month by 1, properly handling year change
+//                            var newMonth = selectedDate.getMonth() - 1
+//                            selectedDate.setMonth(newMonth)
+//                            dateLabel.text = Qt.formatDate(selectedDate, "MMMM yyyy")
+//                        }
+//                    }
 
+                    // Label to display the selected date
                     Label {
-                        width: parent.width - moveBackwardsButton.width - moveForwardsButton.width - (Theme.paddingSmall * 2)
-                        text: qsTr("27/08 ~ 26/09/2024")
+                        id: dateLabel
+                        text: Qt.formatDate(selectedDate, "MMMM yyyy")
                         anchors.horizontalCenter: parent.horizontalCenter
                         anchors.verticalCenter: parent.verticalCenter
                         horizontalAlignment: Text.AlignHCenter
                         verticalAlignment: Text.AlignVCenter
+
+                        // Styling the text (optional)
+                        font.bold: true
+                        font.pointSize: 20
+                        color: "white"
+
+                        MouseArea {
+                            anchors.fill: parent
+                            onClicked: {
+                                var obj = pageStack.animatorPush("Sailfish.Silica.DatePickerDialog", { date: selectedDate })
+
+                                obj.pageCompleted.connect(function(page) {
+                                    page.accepted.connect(function() {
+                                        selectedDate = page.date
+                                        dateLabel.text = Qt.formatDate(selectedDate, "MMMM yyyy")
+                                    })
+                                })
+                            }
+                        }
                     }
 
-                    IconButton {
-                        id: moveForwardsButton
-                        icon.source: "image://theme/icon-m-right"
-                        anchors.verticalCenter: parent.verticalCenter
-                        anchors.right: parent.right
-                        anchors.rightMargin: Theme.paddingSmall
-                    }
+
+//                    IconButton {
+//                        id: moveForwardsButton
+//                        icon.source: "image://theme/icon-m-right"
+//                        anchors.verticalCenter: parent.verticalCenter
+//                        anchors.right: parent.right
+//                        anchors.rightMargin: Theme.paddingSmall
+//                        onClicked: {
+//                            // Increase the month by 1, properly handling year change
+//                            var newMonth = selectedDate.getMonth() + 1
+//                            selectedDate.setMonth(newMonth)
+//                            dateLabel.text = Qt.formatDate(selectedDate, "MMMM yyyy")
+//                        }
+//                    }
                 }
             }
 
@@ -80,7 +140,7 @@ Page {
 
                     // Left Column
                     Column {
-                        width: parent.width * 0.27
+                        width: parent.width * 0.26
                         anchors.verticalCenter: parent.verticalCenter
 
                         Text {
@@ -100,7 +160,7 @@ Page {
 
                     // Center Column
                     Column {
-                        width: pparent.width * 0.27
+                        width: parent.width * 0.26
                         anchors.verticalCenter: parent.verticalCenter
 
                         Text {
@@ -120,7 +180,7 @@ Page {
 
                     // Right Column
                     Column {
-                        width: parent.width * 0.27
+                        width: parent.width * 0.26
                         anchors.verticalCenter: parent.verticalCenter
 
                         Text {
@@ -157,7 +217,7 @@ Page {
                         anchors.rightMargin: Theme.paddingSmall
 
                         Text {
-                            text: qsTr("Mon")
+                            text: qsTr("Sun")
                             color: "white"
                             width: parent.width * 0.2
                             horizontalAlignment: Text.AlignLeft
@@ -214,7 +274,7 @@ Page {
                         }
 
                         Text {
-                            text: qsTr("Chase -> Lloyds Bank")
+                            text: qsTr("Chase 1 -> Lloyds Bank")
                             width: parent.width * 0.5
                             horizontalAlignment: Text.AlignLeft
                             verticalAlignment: Text.AlignVCenter
@@ -253,7 +313,7 @@ Page {
                         }
 
                         Text {
-                            text: qsTr("Chase -> Lloyds Bank")
+                            text: qsTr("Chase 2 -> Lloyds Bank")
                             width: parent.width * 0.5
                             horizontalAlignment: Text.AlignLeft
                             verticalAlignment: Text.AlignVCenter
@@ -292,7 +352,7 @@ Page {
                         }
 
                         Text {
-                            text: qsTr("Chase -> Lloyds Bank")
+                            text: qsTr("Chase 3 -> Lloyds Bank")
                             width: parent.width * 0.5
                             horizontalAlignment: Text.AlignLeft
                             verticalAlignment: Text.AlignVCenter
@@ -339,7 +399,7 @@ Page {
                         }
 
                         Text {
-                            text: qsTr("01/09/2024")
+                            text: qsTr("02/09/2024")
                             color: "white"
                             width: parent.width * 0.45
                             horizontalAlignment: Text.AlignLeft
@@ -388,7 +448,7 @@ Page {
                         }
 
                         Text {
-                            text: qsTr("Chase -> Lloyds Bank")
+                            text: qsTr("Chase 1 -> Lloyds Bank")
                             width: parent.width * 0.5
                             horizontalAlignment: Text.AlignLeft
                             verticalAlignment: Text.AlignVCenter
@@ -427,7 +487,7 @@ Page {
                         }
 
                         Text {
-                            text: qsTr("Chase -> Lloyds Bank")
+                            text: qsTr("Chase 2 -> Lloyds Bank")
                             width: parent.width * 0.5
                             horizontalAlignment: Text.AlignLeft
                             verticalAlignment: Text.AlignVCenter
@@ -466,7 +526,7 @@ Page {
                         }
 
                         Text {
-                            text: qsTr("Chase -> Lloyds Bank")
+                            text: qsTr("Chase 3 -> Lloyds Bank")
                             width: parent.width * 0.5
                             horizontalAlignment: Text.AlignLeft
                             verticalAlignment: Text.AlignVCenter
@@ -505,7 +565,7 @@ Page {
                         anchors.rightMargin: Theme.paddingSmall
 
                         Text {
-                            text: qsTr("Mon")
+                            text: qsTr("Tue")
                             color: "white"
                             width: parent.width * 0.2
                             horizontalAlignment: Text.AlignLeft
@@ -513,7 +573,7 @@ Page {
                         }
 
                         Text {
-                            text: qsTr("01/09/2024")
+                            text: qsTr("03/09/2024")
                             color: "white"
                             width: parent.width * 0.45
                             horizontalAlignment: Text.AlignLeft
@@ -562,7 +622,7 @@ Page {
                         }
 
                         Text {
-                            text: qsTr("Chase -> Lloyds Bank")
+                            text: qsTr("Chase 1 -> Lloyds Bank")
                             width: parent.width * 0.5
                             horizontalAlignment: Text.AlignLeft
                             verticalAlignment: Text.AlignVCenter
@@ -601,7 +661,7 @@ Page {
                         }
 
                         Text {
-                            text: qsTr("Chase -> Lloyds Bank")
+                            text: qsTr("Chase 2 -> Lloyds Bank")
                             width: parent.width * 0.5
                             horizontalAlignment: Text.AlignLeft
                             verticalAlignment: Text.AlignVCenter
@@ -640,7 +700,7 @@ Page {
                         }
 
                         Text {
-                            text: qsTr("Chase -> Lloyds Bank")
+                            text: qsTr("Chase 3 -> Lloyds Bank")
                             width: parent.width * 0.5
                             horizontalAlignment: Text.AlignLeft
                             verticalAlignment: Text.AlignVCenter
@@ -679,7 +739,7 @@ Page {
                         }
 
                         Text {
-                            text: qsTr("Chase -> Lloyds Bank")
+                            text: qsTr("Chase 4 -> Lloyds Bank")
                             width: parent.width * 0.5
                             horizontalAlignment: Text.AlignLeft
                             verticalAlignment: Text.AlignVCenter
@@ -718,7 +778,7 @@ Page {
                         }
 
                         Text {
-                            text: qsTr("Chase -> Lloyds Bank")
+                            text: qsTr("Chase 5 -> Lloyds Bank")
                             width: parent.width * 0.5
                             horizontalAlignment: Text.AlignLeft
                             verticalAlignment: Text.AlignVCenter
@@ -757,7 +817,7 @@ Page {
                         }
 
                         Text {
-                            text: qsTr("Chase -> Lloyds Bank")
+                            text: qsTr("Chase 6 -> Lloyds Bank")
                             width: parent.width * 0.5
                             horizontalAlignment: Text.AlignLeft
                             verticalAlignment: Text.AlignVCenter
@@ -796,7 +856,7 @@ Page {
                         }
 
                         Text {
-                            text: qsTr("Chase -> Lloyds Bank")
+                            text: qsTr("Chase 7 -> Lloyds Bank")
                             width: parent.width * 0.5
                             horizontalAlignment: Text.AlignLeft
                             verticalAlignment: Text.AlignVCenter
@@ -835,7 +895,7 @@ Page {
                         }
 
                         Text {
-                            text: qsTr("Chase -> Lloyds Bank")
+                            text: qsTr("Chase 8 -> Lloyds Bank")
                             width: parent.width * 0.5
                             horizontalAlignment: Text.AlignLeft
                             verticalAlignment: Text.AlignVCenter
@@ -874,7 +934,7 @@ Page {
                         }
 
                         Text {
-                            text: qsTr("Chase -> Lloyds Bank")
+                            text: qsTr("Chase 9 -> Lloyds Bank")
                             width: parent.width * 0.5
                             horizontalAlignment: Text.AlignLeft
                             verticalAlignment: Text.AlignVCenter
@@ -913,7 +973,7 @@ Page {
                         }
 
                         Text {
-                            text: qsTr("Chase -> Lloyds Bank")
+                            text: qsTr("Chase 10 -> Lloyds Bank")
                             width: parent.width * 0.5
                             horizontalAlignment: Text.AlignLeft
                             verticalAlignment: Text.AlignVCenter
@@ -952,7 +1012,7 @@ Page {
                         }
 
                         Text {
-                            text: qsTr("Chase -> Lloyds Bank")
+                            text: qsTr("Chase 11 -> Lloyds Bank")
                             width: parent.width * 0.5
                             horizontalAlignment: Text.AlignLeft
                             verticalAlignment: Text.AlignVCenter

@@ -14,15 +14,35 @@ TARGET = MoneyManager
 
 CONFIG += sailfishapp
 
-SOURCES += src/MoneyManager.cpp
+SUBDIRS += localstorage
+
+SOURCES += src/MoneyManager.cpp \
+    src/incomecategory.cpp
 
 DISTFILES += qml/MoneyManager.qml \
+    Database.js \
+    qml/Accounts_Type_db.js \
+    qml/Accounts_db.js \
+    qml/Categories_Expenses_db.js \
+    qml/Currencies_db.js \
+    qml/JS/AccountTypes_db.js \
+    qml/Setting_db.js \
+    qml/Transations_Expenses_db.js \
+    qml/Transations_Income_db.js \
+    qml/Transations_Transfer_db.js \
     qml/cover/CoverPage.qml \
-    qml/database_2024_08_19.js \
-    qml/pages/DatePickerPage.qml \
+    qml/pages/AccountsPage.qml \
+    qml/pages/EditAccountPage.qml \
+    qml/pages/EditAccountTypePage.qml \
     qml/pages/EditTransationPage.qml \
+    qml/pages/Expense_CategoriesPage.qml \
+    qml/pages/Expense_CategoryPage.qml \
     qml/pages/FirstPage.qml \
-    qml/pages/FirstPage_2024_08_25.qml \
+    qml/pages/IncomeCategoriesPage.qml \
+    qml/pages/IncomeCategoryPage.qml \
+    qml/pages/ResetDatabasePage.qml \
+    qml/pages/SettingPage.qml \
+    qml/pages/account/AccountTypesPage.qml \
     rpm/MoneyManager.changes.in \
     rpm/MoneyManager.changes.run.in \
     rpm/MoneyManager.spec \
@@ -41,4 +61,5 @@ CONFIG += sailfishapp_i18n
 # modify the localized app name in the the .desktop file.
 TRANSLATIONS += translations/MoneyManager-de.ts
 
-HEADERS +=
+HEADERS += \
+    src/incomecategory.h

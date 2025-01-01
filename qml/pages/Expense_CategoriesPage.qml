@@ -1,7 +1,7 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
 import QtQuick.LocalStorage 2.0
-import "../Categories_Incomes_db.js" as DBmanager
+import "../Categories_Expenses_db.js" as DBmanager
 
 Page {
     id: categoriesPage
@@ -17,7 +17,7 @@ Page {
             MenuItem {
                 text: qsTr("Add Category")
                 onClicked: {
-                    var dialog = pageStack.push(Qt.resolvedUrl("IncomeCategoryPage.qml"));
+                    var dialog = pageStack.push(Qt.resolvedUrl("Expense_CategoryPage.qml"));
                     dialog.accepted.connect(function() {
                         if (dialog.name && dialog.name.trim() !== "") {
                             DBmanager.insertCategory(dialog.name.trim());
@@ -70,7 +70,7 @@ Page {
 
             onClicked: {
                 if (!menuOpen) {
-                    var dialog = pageStack.push(Qt.resolvedUrl("IncomeCategoryPage.qml"), {"categoryName": modelData});
+                    var dialog = pageStack.push(Qt.resolvedUrl("Expense_CategoryPage.qml"), {"categoryName": modelData});
                     dialog.accepted.connect(function() {
                         if (dialog.name && dialog.name.trim() !== "") {
                             if (dialog.name.trim() !== modelData) {

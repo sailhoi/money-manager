@@ -22,7 +22,7 @@ function initializeDatabase() {
 
     db.transaction(
         function(tx) {
-            tx.executeSql('CREATE TABLE IF NOT EXISTS categories_expenses(category TEXT NOT NULL PRIMARY KEY UNIQUE)');
+            tx.executeSql('CREATE TABLE IF NOT EXISTS categories(category TEXT NOT NULL PRIMARY KEY UNIQUE)');
         }
     );
 }
@@ -33,7 +33,7 @@ function getAllCategories() {
 
     db.transaction(
         function(tx) {
-            var rs = tx.executeSql('SELECT category FROM categories_expenses');
+            var rs = tx.executeSql('SELECT category FROM categories');
             for(var i = 0; i < rs.rows.length; i++) {
                 var dbItem = rs.rows.item(i);
                 res.push(dbItem.category);
@@ -49,9 +49,9 @@ function insertCategory(category) {
 
     db.transaction(
         function(tx) {
-            var rs = tx.executeSql('INSERT INTO categories_expenses VALUES (?);', [category]);
+            var rs = tx.executeSql('INSERT INTO categories VALUES (?);', [category]);
             if (rs.rowsAffected > 0) {
-                res = "Insert on CATEGORIES complited";
+                res = "Insert on categories complited";
             } else {
                 res = "Error";
             }
@@ -67,9 +67,9 @@ function updateCategory(oldName, newName) {
         function(tx) {
             console.log("Old Name: "+ oldName);
             console.log("NewName Name: "+ newName);
-            var rs = tx.executeSql("UPDATE categories_expenses SET category=? WHERE category=?;",[newName, oldName]);
+            var rs = tx.executeSql("UPDATE categories SET category=? WHERE category=?;",[newName, oldName]);
             if (rs.rowsAffected > 0) {
-                res = "Insert on CATEGORIES complited";
+                res = "Insert on categories complited";
             } else {
                 res = "Error";
             }
@@ -83,7 +83,7 @@ function deleteCategory(category) {
     var res, rs1, rs2;
 
     db.transaction(function(tx) {
-        rs2 = tx.executeSql("DELETE FROM categories_expenses WHERE category='" + category + "';");
+        rs2 = tx.executeSql("DELETE FROM categories WHERE category='" + category + "';");
         if (rs2.rowsAffected > 0) res = "OK";
         else res = "Error";
     });
@@ -95,7 +95,7 @@ function reset() {
     var db = getDatabase();
     db.transaction(
         function(tx) {
-            tx.executeSql('DROP TABLE categories_expenses')
+            tx.executeSql('DROP TABLE categories')
       });
     initializeDatabase();
 }
