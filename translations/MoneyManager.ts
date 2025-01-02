@@ -56,6 +56,18 @@
     </message>
 </context>
 <context>
+    <name>EditAccountPage</name>
+    <message>
+        <source>New Account Type</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <comment>placeholder for account type name</comment>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>EditAccountTypePage</name>
     <message>
         <source>New Account Type</source>

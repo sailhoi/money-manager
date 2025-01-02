@@ -33,36 +33,33 @@ function initializeDatabase() {
     var db = getDatabase();
 
     db.transaction(function (tx) {
-        tx.executeSql('CREATE TABLE IF NOT EXISTS accounts (account_id INT PRIMARY KEY NOT NULL UNIQUE, type_id INT NOT NULL REFERENCES account_types(type_id), account TEXT NOT NULL);');
-
-        // Insert example data for Accounts if empty
-        insertAccount("Main Savings", 1);
-        insertAccount("Daily Expenses", 2);
-        insertAccount("Travel Card", 3);
+        tx.executeSql('CREATE TABLE IF NOT EXISTS accounts (account_id INTEGER PRIMARY KEY NOT NULL UNIQUE, type_id INT NOT NULL REFERENCES account_types(type_id), account TEXT NOT NULL);');
     });
 }
 
 function getAllAccounts(accountType) {
     var db = getDatabase();
-    var result = [];
+    var res = {}; // Object to store accounts with account_id as key
+    console.log("Account Type:", accountType); // Log the passed accountType
 
-    db.transaction(function (tx) {
-        var rs = tx.executeSql('SELECT account_id, account FROM accounts WHERE type_id =? ORDER BY account', [accountType]);
-        for (var i = 0; i < rs.rows.length; i++) {
-            result.push({
-                id: rs.rows.item(i).id,
-                Account: rs.rows.item(i).Account,
-                Account_Type_ID: rs.rows.item(i).Account_Type_ID,
-            });
+    db.transaction(
+        function(tx) {
+            var rs = tx.executeSql('SELECT account_id, account FROM accounts WHERE type_id = ? ORDER BY account', [accountType]);
+            for (var i = 0; i < rs.rows.length; i++) {
+                var dbItem = rs.rows.item(i);
+                console.log("Account ID:", dbItem.account_id, "Account Name:", dbItem.account); // Log each retrieved item
+                res[dbItem.account_id] = dbItem.account;
+            }
         }
-    });
-    return result;
+    );
+    return res;
 }
 
 function insertAccount(account, accountType) {
     var db = getDatabase();
     var result;
     var newID = getNewID();
+    console.log("ID: "+ newID +" Account Name: " + account + "TypeID: " + accountType)
     db.transaction(function (tx) {
         try {
             tx.executeSql('INSERT INTO accounts VALUES (?,?,?)', [newID,accountType,account]);
@@ -74,6 +71,37 @@ function insertAccount(account, accountType) {
         console.log(result);
     });
     return result;
+}
+
+function updateAccount(accountID, newName) {
+    var db = getDatabase()
+    var res = ""
+    db.transaction(
+        function(tx) {
+            console.log("Account ID: "+ accountID);
+            console.log("NewName Name: "+ newName);
+            var rs = tx.executeSql("UPDATE accounts SET account=? WHERE account_id=?;",[newName, accountID]);
+            if (rs.rowsAffected > 0) {
+                res = "Insert on categories complited";
+            } else {
+                res = "Error";
+            }
+        }
+    );
+    return res;
+}
+
+function deleteAccount(accountID) {
+    var db = getDatabase();
+    var res, rs1, rs2;
+
+    db.transaction(function(tx) {
+        rs2 = tx.executeSql("DELETE FROM categories WHERE category='" + category + "';");
+        if (rs2.rowsAffected > 0) res = "OK";
+        else res = "Error";
+    });
+
+    return res;
 }
 
 function resetDatabase() {

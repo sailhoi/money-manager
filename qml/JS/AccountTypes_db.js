@@ -47,14 +47,14 @@ function initializeDatabase() {
 
 function getAllAccountTypes() {
     var db = getDatabase();
-    var res = []
+    var res = {};
 
     db.transaction(
         function(tx) {
             var rs = tx.executeSql('SELECT type_id, account_type FROM account_types');
-            for(var i = 0; i < rs.rows.length; i++) {
+            for (var i = 0; i < rs.rows.length; i++) {
                 var dbItem = rs.rows.item(i);
-                res.push({type_id: dbItem.type_id, name: dbItem.account_type});
+                res[dbItem.type_id] = dbItem.account_type;
             }
         }
     );

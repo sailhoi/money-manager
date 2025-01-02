@@ -69,7 +69,7 @@ Page {
 
             onClicked: {
                 if (!menuOpen) {
-                    var dialog = pageStack.push(Qt.resolvedUrl("AccountsPage.qml"), {"typeID": model.id, "typeName": model.name});
+                    pageStack.animatorPush(Qt.resolvedUrl("AccountsPage.qml"), { "typeID": model.type_id, "typeName": model.name });
                 }
             }
 
@@ -93,12 +93,14 @@ Page {
 
     function refreshItems() {
         listModel.clear();
-        var accountTypes = AccountTypesManager.getAllAccountTypes();
-        for (var i = 0; i < accountTypes.length; i++) {
-            listModel.append({
-                "name": accountTypes[i].name,
-                "id": accountTypes[i].type_id
-            });
+        var accountTypes = AccountTypesManager.getAllAccountTypes(); // Returns an object with type_id as keys
+        for (var typeId in accountTypes) {
+            if (accountTypes.hasOwnProperty(typeId)) {
+                listModel.append({
+                    "type_id": parseInt(typeId), // Convert the key back to an integer
+                    "name": accountTypes[typeId]
+                });
+            }
         }
     }
 }

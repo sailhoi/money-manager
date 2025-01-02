@@ -5,6 +5,7 @@ import "../../JS/Accounts_db.js" as AccountsManager
 
 Page {
     id: categoriesPage
+    property var type;
 
     property int typeID
     property string typeName
@@ -21,7 +22,7 @@ Page {
                     var dialog = pageStack.push(Qt.resolvedUrl("EditAccountPage.qml"));
                     dialog.accepted.connect(function() {
                         if (dialog.name && dialog.name.trim() !== "") {
-                            AccountsManager.insertAccount(dialog.name.trim());
+                            AccountsManager.insertAccount(dialog.name.trim(), typeID);
                             refreshItems();
                         } else {
                             console.error("Account name cannot be empty");
@@ -32,7 +33,7 @@ Page {
 
             MenuItem {
                 text: qsTr("Reset Accounts")
-//                visible: listModel.count > 0
+                visible: listModel.count > 0
                 onClicked: {
                     var confirmation = Remorse.popupAction(
                         root,
@@ -71,11 +72,11 @@ Page {
 
             onClicked: {
                 if (!menuOpen) {
-                    var dialog = pageStack.push(Qt.resolvedUrl("IncomeCategoryPage.qml"), {"categoryName": modelData});
+                    var dialog = pageStack.push(Qt.resolvedUrl("EditAccountPage.qml"), {"accountID": model.account_id, "accountName": model.name});
                     dialog.accepted.connect(function() {
                         if (dialog.name && dialog.name.trim() !== "") {
-                            if (dialog.name.trim() !== modelData) {
-                                DBmanager.updateCategory(modelData, dialog.name.trim());
+                            if (dialog.name.trim() !== model.name) {
+                                AccountsManager.updateAccount(model.account_id, dialog.name.trim());
                                 refreshItems();
                             } else {
                                 console.log("No changes to the category name");
@@ -92,7 +93,7 @@ Page {
                 x: Theme.horizontalPageMargin
                 width: parent.width - 2 * x
                 anchors.verticalCenter: parent.verticalCenter
-                text: modelData
+                text: model.name
                 truncationMode: TruncationMode.Fade
                 font.capitalization: Font.Capitalize
             }
@@ -116,12 +117,20 @@ Page {
     Component.onCompleted: refreshItems()
 
     function refreshItems() {
-        listModel.clear();
-        var accounts = AccountsManager.getAllAccounts(typeID);
-        console.log(JSON.stringify(accounts));
-        console.log("Type id:". typeID)
-        for (var i = 0; i < accounts.length; i++) {
-            listModel.append({ "name": accounts[i] });
+        listModel.clear(); // Clear the list model
+        var accounts = AccountsManager.getAllAccounts(typeID); // Get accounts as an object
+
+        // Iterate through the accounts object
+        for (var accountId in accounts) {
+            if (accounts.hasOwnProperty(accountId)) { // Ensure the property is directly on the object
+                console.log("Account ID:", accountId, "Name:", accounts[accountId]); // Log account details
+
+                // Append to the list model
+                listModel.append({
+                    "account_id": parseInt(accountId), // Ensure the ID is an integer
+                    "name": accounts[accountId] // Set the account name
+                });
+            }
         }
     }
 }
