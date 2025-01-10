@@ -2,6 +2,30 @@
 <!DOCTYPE TS>
 <TS version="2.1">
 <context>
+    <name>AccountPage</name>
+    <message>
+        <source>New Account Type</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <comment>placeholder for account type name</comment>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>AccountTypePage</name>
+    <message>
+        <source>New Account Type</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <comment>placeholder for account type name</comment>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>AccountTypesPage</name>
     <message>
         <source>Add Account Type</source>
@@ -56,26 +80,60 @@
     </message>
 </context>
 <context>
-    <name>EditAccountPage</name>
+    <name>CurrenciesPage</name>
     <message>
-        <source>New Account Type</source>
+        <source>Add Category</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Name</source>
-        <comment>placeholder for account type name</comment>
+        <source>Reset Categories</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Income Categories</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No income categories</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Pull down to add a new category</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Delete</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Are you sure you want to reset all currencies?</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
-    <name>EditAccountTypePage</name>
+    <name>CurrenciesPage_copy</name>
     <message>
-        <source>New Account Type</source>
+        <source>Add Currency</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Name</source>
-        <comment>placeholder for account type name</comment>
+        <source>Reset Currencies</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Are you sure you want to reset all currencies?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Currencies</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No currencies available</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Pull down to add a new currency</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

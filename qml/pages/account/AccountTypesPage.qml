@@ -17,7 +17,7 @@ Page {
             MenuItem {
                 text: qsTr("Add Account Type")
                 onClicked: {
-                    var dialog = pageStack.push(Qt.resolvedUrl("EditAccountTypePage.qml"));
+                    var dialog = pageStack.push(Qt.resolvedUrl("AccountTypePage.qml"));
                     dialog.accepted.connect(function() {
                         if (dialog.name && dialog.name.trim() !== "") {
                             AccountTypesManager.insertAccountType(dialog.name.trim());

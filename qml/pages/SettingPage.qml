@@ -87,7 +87,7 @@ Page {
             section: "Setting"
         }
         ListElement {
-            page: "SubCurrencySettingPage.qml"
+            page: "currency/CurrenciesPage.qml"
             title: "Sub Currency Setting"
             subtitle: "List on Sub Currency"
             section: "Setting"

@@ -43,6 +43,7 @@ DISTFILES += qml/MoneyManager.qml \
     qml/pages/ResetDatabasePage.qml \
     qml/pages/SettingPage.qml \
     qml/pages/account/AccountTypesPage.qml \
+    qml/pages/currency/CurrenciesPage.qml \
     rpm/MoneyManager.changes.in \
     rpm/MoneyManager.changes.run.in \
     rpm/MoneyManager.spec \

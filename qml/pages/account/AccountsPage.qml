@@ -19,7 +19,7 @@ Page {
             MenuItem {
                 text: qsTr("Add Account")
                 onClicked: {
-                    var dialog = pageStack.push(Qt.resolvedUrl("EditAccountPage.qml"));
+                    var dialog = pageStack.push(Qt.resolvedUrl("AccountPage.qml"));
                     dialog.accepted.connect(function() {
                         if (dialog.name && dialog.name.trim() !== "") {
                             AccountsManager.insertAccount(dialog.name.trim(), typeID);
@@ -72,7 +72,7 @@ Page {
 
             onClicked: {
                 if (!menuOpen) {
-                    var dialog = pageStack.push(Qt.resolvedUrl("EditAccountPage.qml"), {"accountID": model.account_id, "accountName": model.name});
+                    var dialog = pageStack.push(Qt.resolvedUrl("AccountPage.qml"), {"accountID": model.account_id, "accountName": model.name});
                     dialog.accepted.connect(function() {
                         if (dialog.name && dialog.name.trim() !== "") {
                             if (dialog.name.trim() !== model.name) {
